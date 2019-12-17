@@ -135,7 +135,7 @@ if (isset($area_name)) {
                     echo '</ul>';
                 }
             } else {
-                echo get_string('noarea', 'block_mrbsp');
+                echo get_string('noarea', 'block_mrbs');
             }
             ?>
         </div>

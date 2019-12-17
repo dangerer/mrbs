@@ -472,7 +472,11 @@ if (has_capability("block/mrbs:forcebook", $context)) {
                     }
         
         // Determine the area id of the room in question first
-        $area_id = $DB->get_field('block_mrbs_room', 'area_id', ['id' => $room_id], MUST_EXIST);
+        if ($room_id > 0) {
+            $area_id = $DB->get_field('block_mrbs_room', 'area_id', ['id' => $room_id], MUST_EXIST);
+        } else {
+            $area_id = 0;
+        }
         // determine if there is more than one area
         $areas = $DB->get_records('block_mrbs_area', null, 'area_name');
         // if there is more than one area then give the option
