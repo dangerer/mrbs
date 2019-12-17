@@ -292,7 +292,7 @@ if ($chkdelete_all === 1 || $chkdelete_all === true) {
 }
 
 // Kopiert die Daten vom alten MRBS zum MRBS RLP (mit ID)
-$migrate = optional_param('migrate', false, PARAM_BOOL);
+/*$migrate = optional_param('migrate', false, PARAM_BOOL);
 if ($migrate === 1 || $migrate === true) {
 
   $old_entries = $DB->get_records('block_mrbs_entry');
@@ -315,7 +315,7 @@ if ($migrate === 1 || $migrate === true) {
        throw new moodle_exception('Migration failed!');
   }
 
-}
+}*/
 
 //echo '<br />'.get_string('browserlang','block_mrbs').' '.$HTTP_ACCEPT_LANGUAGE.' '.get_string('postbrowserlang','block_mrbs');
 include 'trailer.php';

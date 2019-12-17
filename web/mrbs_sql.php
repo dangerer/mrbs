@@ -426,9 +426,11 @@ function mrbsCreateRepeatingEntrys($starttime, $endtime, $rep_type, $rep_enddate
     $ret->created = 0;
     $ret->lasttime = null;
     $reps = mrbsGetRepeatEntryList($starttime, $rep_enddate, $rep_type, $rep_opt, $max_rep_entrys, $rep_num_weeks);
-    $ret->requested = count($reps);
-    if ($ret->requested > $max_rep_entrys) {
-        return $ret;
+    if ($reps) {
+        $ret->requested = count($reps);
+        if ($ret->requested > $max_rep_entrys) {
+            return $ret;
+        }
     }
 
     $repeatid = 0;

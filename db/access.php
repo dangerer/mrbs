@@ -110,7 +110,7 @@ $capabilities = [
     ],
     // Limits users to only creating 'unconfirmed' bookings
     // (unless they are the room administrator)
-    'block/mrbs:editmrbs_unconfirmed' => [
+    'block/mrbs:editmrbsunconfirmed' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => []

@@ -225,7 +225,7 @@ $context = context_system::instance();
 
 $roomadmin = false;
 if (!getWritable($create_by, getUserName())) {
-    if (has_capability('block/mrbs:editmrbs_unconfirmed', $context, null, false)) {
+    if (has_capability('block/mrbs:editmrbsunconfirmed', $context, null, false)) {
         if ($room_id) {
             $dbroom = $DB->get_record('block_mrbs_room', ['id' => $room_id]);
             if ($dbroom->room_admin_email == $USER->email) {
@@ -559,7 +559,7 @@ if (has_capability("block/mrbs:forcebook", $context)) {
                     } else {
                         $unconfirmed = false;
                         $unconfirmedonly = false;
-                        if (has_capability('block/mrbs:editmrbs_unconfirmed', $context, null, false)) {
+                        if (has_capability('block/mrbs:editmrbsunconfirmed', $context, null, false)) {
                             $unconfirmed = true;
                         }
                         if (authGetUserLevel(getUserName()) < 2 && $unconfirmed) {

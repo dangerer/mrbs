@@ -81,7 +81,7 @@ $context = context_system::instance();
 $PAGE->set_context($context);
 
 $roomadmin = false;
-$editunconfirmed = has_capability('block/mrbs:editmrbs_unconfirmed', $context, null, false);
+$editunconfirmed = has_capability('block/mrbs:editmrbsunconfirmed', $context, null, false);
 if (!getWritable($create_by, getUserName())) {
     if ($editunconfirmed) {
         foreach ($rooms as $key => $room) {

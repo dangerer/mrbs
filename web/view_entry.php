@@ -29,23 +29,6 @@ $pview = optional_param('pview', 0, PARAM_INT);
 
 $context = context_system::instance();
 
-//if the booking belongs to the user looking at it, they probably want to edit it
-if ($record = $DB->get_record('block_mrbs_entry', ['id' => $id])) {
-    if (strtolower($record->create_by) == strtolower($USER->username)) {
-        $redirect = true;
-        if (has_capability('block/mrbs:editmrbs_unconfirmed', $context, null, false)) {
-            if ($USER->email != $DB->get_field('block_mrbs_room', 'room_admin_email', ['id' => $record->room_id])) {
-                if ($record->type != 'U') {
-                    $redirect = false;  // Do not redirect to edit screen if the booking is confirmed
-                }
-            }
-        }
-        if ($redirect) {
-            redirect(new moodle_url('/blocks/mrbs/web/edit_entry.php', ['id' => $id]));
-        }
-    }
-}
-
 //If we dont know the right date then make it up
 if (($day == 0) or ($month == 0) or ($year == 0)) {
     $day = date("d");
@@ -71,6 +54,24 @@ if ($pview) {
 }
 
 $PAGE->set_url($thisurl);
+
+//if the booking belongs to the user looking at it, they probably want to edit it
+if ($record = $DB->get_record('block_mrbs_entry', ['id' => $id])) {
+    if (strtolower($record->create_by) == strtolower($USER->username)) {
+        $redirect = true;
+        if (has_capability('block/mrbs:editmrbsunconfirmed', $context, null, false)) {
+            if ($USER->email != $DB->get_field('block_mrbs_room', 'room_admin_email', ['id' => $record->room_id])) {
+                if ($record->type != 'U') {
+                    $redirect = false;  // Do not redirect to edit screen if the booking is confirmed
+                }
+            }
+        }
+        if ($redirect) {
+            redirect(new moodle_url('/blocks/mrbs/web/edit_entry.php', ['id' => $id]));
+        }
+    }
+}
+
 require_login();
 
 $namefields = get_all_user_name_fields(true, 'u');
@@ -193,7 +194,7 @@ $enable_periods ? toPeriodString($start_period, $duration, $dur_units) : toTimeS
 $repeat_key = "rep_type_" . $rep_type;
 
 $roomadmin = false;
-if (has_capability('block/mrbs:editmrbs_unconfirmed', $context, null, false)) {
+if (has_capability('block/mrbs:editmrbsunconfirmed', $context, null, false)) {
     $adminemail = $DB->get_field('block_mrbs_room', 'room_admin_email', ['id' => $booking->room_id]);
     if ($adminemail == $USER->email) {
         $roomadmin = true;
