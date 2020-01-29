@@ -242,7 +242,7 @@ if($dbman->table_exists($mrbs_room)) {
 }
 
 if($cnt_old_entries >= 1 || $cnt_old_rooms >= 1 || $cnt_old_areas >= 1 || $cnt_old_repeats >= 1) {
-?>
+/*?>
 <hr />
 <p><strong>Migration aus der alten MRBS Installation</strong> 
 <br />Anzahl Bereiche (MRBS):&nbsp;<?= $cnt_old_entries ?> 
@@ -254,7 +254,7 @@ if($cnt_old_entries >= 1 || $cnt_old_rooms >= 1 || $cnt_old_areas >= 1 || $cnt_o
         onclick="if (confirm('Migration starten?')) {
                     document.location = '<?= $migrateurl ?>';
                 }" />Migration starten?</button>&nbsp;<em><strong>Warnung:</strong> Alle bisherigen Einträge werden überschrieben!</em>
-<?php
+<?php */
  }
 
 if($cnt_entries >= 1 || $cnt_rooms >= 1 || $cnt_areas >= 1 || $cnt_repeats >= 1) {
