@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-class block_mrbs extends block_base
+class block_mrbs extends block_list
 {
     public function init()
     {
         $this->title = get_string('blockname', 'block_mrbs');
-        $this->content_type = BLOCK_TYPE_TEXT;
     }
 
     public function has_config()
@@ -35,7 +34,7 @@ class block_mrbs extends block_base
 
     public function get_content()
     {
-        global $CFG, $OUTPUT;
+        global $CFG, $OUTPUT, $SESSION;
 
         if ($this->content !== null) {
             return $this->content;
@@ -58,11 +57,12 @@ class block_mrbs extends block_base
                 $target = ' target="_blank" ';
             }
             $this->content = new stdClass();
-            $this->content->text = '<a href="' . $serverpath . '/index.php" ' . $target . '>' . $icon . ' &nbsp;' . $go . '</a>';
+            $this->content->items = array();
+            $this->content->items[] = '<a href="' . $serverpath . '/index.php" ' . $target . '>' . $icon . ' &nbsp;' . $go . '</a>';
+            $this->content->items[] = '<a href="' . $CFG->wwwroot .'/admin/purgecaches.php?confirm=1&amp;sesskey=' . sesskey().'&amp;returnurl='.$this->page->url .'">' . $icon . ' &nbsp;' . get_string('purge_cache', 'block_mrbs') . '</a>';
             $this->content->footer = '';
-            return $this->content;
+            return $this->content; 
         }
-
         return null;
     }
 

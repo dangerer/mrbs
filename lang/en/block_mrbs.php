@@ -336,3 +336,4 @@ $string['you_are'] = 'You are';
 $string['you_have_not_entered'] = 'You have not entered a';
 $string['you_have_not_selected'] = 'You have not selected a';
 $string['last_change'] = 'Last changed on: ';
+$string['purge_cache'] = 'Purge caches';
